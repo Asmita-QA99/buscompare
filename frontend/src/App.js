@@ -12,7 +12,7 @@ function App() {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:3000/search?from=${from}&to=${to}`
+        `https://buscompare-backend.onrender.com/search?from=${from}&to=${to}`
       );
       const data = await res.json();
       setBuses(data.buses);
