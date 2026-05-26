@@ -7,10 +7,9 @@ app.use(cors())
 app.use(express.json())
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://asmita:buscompare123@cluster0.cdtxpet.mongodb.net/buscompare?appName=Cluster0')
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('MongoDB connected!'))
 .catch(err => console.log('MongoDB error:', err))
-
 // User Schema
 const userSchema = new mongoose.Schema({
   name: String,
