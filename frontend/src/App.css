@@ -394,3 +394,14 @@ body {
 .show-password-btn:hover {
   color: #1D9E75;
 }
+
+.success-msg {
+  background: #E1F5EE;
+  color: #085041;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 14px;
+  text-align: center;
+  font-weight: 500;
+}
