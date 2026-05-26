@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+.auth-box {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.auth-box h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #222;
+}
+
+.error-msg {
+  background: #FCEBEB;
+  color: #A32D2D;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 14px;
+  text-align: center;
+}
