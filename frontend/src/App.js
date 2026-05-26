@@ -15,6 +15,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const searchBuses = async () => {
     setLoading(true);
@@ -119,25 +120,36 @@ function App() {
           </div>
           <div className="field">
             <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-            />
+            <div className="password-field">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+              />
+              <button
+                className="show-password-btn"
+                onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
-          <button className="search-btn" style={{width:"100%", marginTop:10}} onClick={login}>
+          <button className="search-btn"
+            style={{width:"100%", marginTop:10}}
+            onClick={login}>
             Login
           </button>
           <p style={{textAlign:"center", marginTop:14, fontSize:13, color:"#666"}}>
             Don't have an account?{" "}
-            <span style={{color:"#1D9E75", cursor:"pointer", fontWeight:"600"}}
-              onClick={() => { setPage("register"); setMessage(""); }}>
+            <span
+              style={{color:"#1D9E75", cursor:"pointer", fontWeight:"600"}}
+              onClick={() => { setPage("register"); setMessage(""); setShowPassword(false); }}>
               Register here
             </span>
           </p>
           <p style={{textAlign:"center", marginTop:8, fontSize:13}}>
-            <span style={{color:"#1D9E75", cursor:"pointer"}}
+            <span
+              style={{color:"#1D9E75", cursor:"pointer"}}
               onClick={() => { setPage("home"); setMessage(""); }}>
               ← Back to home
             </span>
@@ -177,25 +189,36 @@ function App() {
           </div>
           <div className="field">
             <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Create a password"
-            />
+            <div className="password-field">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Create a password"
+              />
+              <button
+                className="show-password-btn"
+                onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? "🙈" : "👁️"}
+              </button>
+            </div>
           </div>
-          <button className="search-btn" style={{width:"100%", marginTop:10}} onClick={register}>
+          <button className="search-btn"
+            style={{width:"100%", marginTop:10}}
+            onClick={register}>
             Create Account
           </button>
           <p style={{textAlign:"center", marginTop:14, fontSize:13, color:"#666"}}>
             Already have an account?{" "}
-            <span style={{color:"#1D9E75", cursor:"pointer", fontWeight:"600"}}
-              onClick={() => { setPage("login"); setMessage(""); }}>
+            <span
+              style={{color:"#1D9E75", cursor:"pointer", fontWeight:"600"}}
+              onClick={() => { setPage("login"); setMessage(""); setShowPassword(false); }}>
               Login here
             </span>
           </p>
           <p style={{textAlign:"center", marginTop:8, fontSize:13}}>
-            <span style={{color:"#1D9E75", cursor:"pointer"}}
+            <span
+              style={{color:"#1D9E75", cursor:"pointer"}}
               onClick={() => { setPage("home"); setMessage(""); }}>
               ← Back to home
             </span>
@@ -214,8 +237,13 @@ function App() {
         <div style={{marginTop:10}}>
           {user ? (
             <div style={{display:"flex", alignItems:"center", justifyContent:"center", gap:12}}>
-              <span style={{fontSize:13, color:"#1D9E75", fontWeight:"600"}}>👋 Hi {user.name}!</span>
-              <button onClick={logout} style={{fontSize:12, padding:"4px 12px", borderRadius:20, border:"1px solid #ccc", background:"white", cursor:"pointer"}}>Logout</button>
+              <span style={{fontSize:13, color:"#1D9E75", fontWeight:"600"}}>
+                👋 Hi {user.name}!
+              </span>
+              <button onClick={logout}
+                style={{fontSize:12, padding:"4px 12px", borderRadius:20, border:"1px solid #ccc", background:"white", cursor:"pointer"}}>
+                Logout
+              </button>
             </div>
           ) : (
             <div style={{display:"flex", gap:8, justifyContent:"center"}}>
@@ -236,11 +264,17 @@ function App() {
         <div className="search-row">
           <div className="field">
             <label>From</label>
-            <input value={from} onChange={(e) => setFrom(e.target.value)} placeholder="Enter city"/>
+            <input
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
+              placeholder="Enter city"/>
           </div>
           <div className="field">
             <label>To</label>
-            <input value={to} onChange={(e) => setTo(e.target.value)} placeholder="Enter city"/>
+            <input
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
+              placeholder="Enter city"/>
           </div>
           <button className="search-btn" onClick={searchBuses}>
             {loading ? "Searching..." : "Search 🔍"}
@@ -264,15 +298,20 @@ function App() {
                 </div>
               </div>
               <div>
-                <div className="bus-rating">{"★".repeat(Math.floor(bus.rating))} {bus.rating}</div>
+                <div className="bus-rating">
+                  {"★".repeat(Math.floor(bus.rating))} {bus.rating}
+                </div>
                 <div className="bus-from">From ₹{lowestPrice}</div>
               </div>
             </div>
+
             <div className="best-deal">
               <div>
                 <div className="best-label">🏆 BEST DEAL</div>
                 <div className="best-price">₹{best.price - best.saving}</div>
-                <div className="best-site-name">on {best.name} · save ₹{best.saving}</div>
+                <div className="best-site-name">
+                  on {best.name} · save ₹{best.saving}
+                </div>
               </div>
               <button
                 className={`coupon-btn ${copied === best.coupon ? "copied" : ""}`}
@@ -280,6 +319,7 @@ function App() {
                 {copied === best.coupon ? "✅ Copied!" : `${best.coupon} 📋`}
               </button>
             </div>
+
             <table className="compare-table">
               <thead>
                 <tr>
@@ -301,7 +341,9 @@ function App() {
                         {site.name}
                       </td>
                       <td className="original-price">₹{site.price}</td>
-                      <td className={`final-price ${isLowest ? "green" : ""}`}>₹{finalPrice}</td>
+                      <td className={`final-price ${isLowest ? "green" : ""}`}>
+                        ₹{finalPrice}
+                      </td>
                       <td>
                         <button
                           className={`code-btn ${copied === site.coupon ? "copied" : ""}`}
